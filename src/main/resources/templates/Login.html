@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script>
+
+        function validateForm() {
+            // Get the email input value
+            var emailInput = document.getElementById('form3Example3');
+
+            // Check if the email is in a valid format
+            var isValid = emailInput.checkValidity();
+
+            if (isValid) {
+                // Redirect to the login page if the email is valid
+                document.cookie = "userEmail=" + emailInput.value;
+                window.location.href = "/search";
+            }
+
+            // Prevent the default form submission behavior
+            return false;
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+<!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden">
+    <style>
+        body {
+            background-image: url("mapab.jpg");
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-position-y: center top 50px;
+            background-size: 60%;
+        }
+
+        .bg-glass {
+            background-color: hsla(0, 0%, 100%, 0.9) !important;
+            backdrop-filter: saturate(200%) blur(25px);
+        }
+    </style>
+
+    <div class="container ml-50 px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="d-flex justify-content-center">
+            <div class="col-lg-4 mb-5 mb-lg-5 position-relative">
+                <div class="card bg-glass mt-5">
+                    <div class="card-body px-4 py-5 mb-0">
+                        <form onsubmit="return validateForm();">
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="email" id="form3Example3" class="form-control" />
+                                <label class="form-label" for="form3Example3">Email address</label>
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" id="form3Example4" class="form-control" />
+                                <label class="form-label" for="form3Example4">Password</label>
+                            </div>
+
+                            <div class="d-flex justify-content-center">
+                                <!-- Submit button -->
+                                <a th:href="@{'/search'}" style="text-decoration: none"><button type="submit" class="btn btn-warning btn-lg">Log in</button></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
