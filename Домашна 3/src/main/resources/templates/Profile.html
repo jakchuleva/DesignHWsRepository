@@ -163,8 +163,11 @@
         <img src="mapa2.jpg">
     </div>
     <div id="profile" class="d-flex justify-content-center">
-        <!-- Submit button -->
-
+        <button type="button" class="btn btn-warning btn-block mb-0 w-100" onclick="redirectToSearch()">
+            Search
+        </button>
+        <button type="submit"><a th:href="@{'/login'}" style="text-decoration: none">Log out</a></button>
+        <button type="submit"><a th:href="@{'/help'}" style="text-decoration: none">Help</a></button>
     </div>
 </div>
 <div >
