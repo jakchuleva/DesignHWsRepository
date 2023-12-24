@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Help page</title>
+  <style>
+    /* Optional: Add some styling to control the width, margin, etc. */
+    .figure-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .figure {
+      width: 48%; /* Adjust as needed */
+    }
+
+    body{
+      font-family: Arial;
+      background-color: #c9d2c3;
+    }
+
+    h1{
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    h3{
+      margin: 0;
+      padding: 0;
+    }
+
+    #profile{
+      float: right;
+      width: 4%;
+      margin: 10px;
+      margin-right: 50px;
+    }
+
+    button{
+      background-color: #eeb05a;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 12%;
+      padding: 5px 5px;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+<div id="profile">
+  <a th:href="@{/profile}">
+<!--    <img id="email" src="download.png" class="color">-->
+    <img src="default.png" alt="Clickable Image" style="width: 100%">
+  </a>
+  <button type="button"><a th:href="@{/login}" style="text-decoration: none">Log out</a></button>
+  <button><a th:href="@{/search}" style="text-decoration: none">Search</a></button>
+</div>
+<h1>Help page</h1>
+<figure>
+  <img src="welcome.png" width="500" height="300">
+  <figcaption style="width: 500px"><h3>Почетна страница</h3>Ова е страницата што ја гледате при првично отворање на апликацијата.
+    Имате две опции:<br/>1. Да се регистрирате на веќе постоечки профил со клик на десното копче Login
+    <br/>2. Да креирате нов профил со клик на првото дадено копче, по што ќе треба да внесете email адреса и лозинка.</figcaption>
+</figure>
+<figure>
+  <img src="signup.png" width="500" height="300">
+  <img src="login.png" width="500" height="300">
+  <figcaption style="width: 1000px"><h3>Страница за регистрација и логирање</h3>Потребно е да ги внесете вашето корисничко име и лозинка.
+    Доколку се уште немате направено профил потребно е да го креирате истиот внесувајќи валидна email адреса и лозинка по избор.</figcaption>
+</figure>
+<div class="figure-container">
+  <figure class="figure">
+    <img src="search.png" width="500" height="300">
+    <figcaption style="width: 500px"><h3>Страница за пребарување</h3>Во горниот лев агол се наоѓа полето за пребарување.
+      Со клик на истото можете да внесете име, град или клучен збор што сакате да го пронајдете, а доколку постои,
+      ќе бидете пренесени на страница со информации за локацијата.</figcaption>
+  </figure>
+
+  <figure class="figure">
+    <img src="result.png" width="500" height="300">
+    <figcaption style="width: 500px"><h3>Страница со резултат од пребарување</h3>Откако ќе пребарате некоја локација ќе бидете
+      редиректирани кон страница со информации за конкретната локација доколку истата е пронајдена во базата на податоци на апликацијата.</figcaption>
+  </figure>
+</div>
+<figure>
+  <img src="profile.png" width="500" height="300">
+  <figcaption style="width: 500px"><h3>Страница за профилот</h3>Овде можете да видите на кој профил сте приклучени на апликацијата.
+    Под вашата слика се наоѓа email адресата која е поврзана со вклучениот профил.</figcaption>
+</figure>
+</body>
+</html>
