@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <title>Help page</title>
   <style>
-    /* Optional: Add some styling to control the width, margin, etc. */
     .figure-container {
       display: flex;
       justify-content: space-between;
     }
 
     .figure {
-      width: 48%; /* Adjust as needed */
+      width: 48%;
     }
 
     body{
@@ -49,8 +48,8 @@
 </head>
 <body>
 <div id="profile">
+  <!-- Buttons that redirect to the Profile,Login and Search pages -->
   <a th:href="@{/profile}">
-<!--    <img id="email" src="download.png" class="color">-->
     <img src="default.png" alt="Clickable Image" style="width: 100%">
   </a>
   <button type="button"><a th:href="@{/login}" style="text-decoration: none">Log out</a></button>

@@ -29,21 +29,16 @@ public class ExampleController {
                                    @RequestParam("form3Example3") String email,
                                    @RequestParam("form3Example4") String password,
                                    RedirectAttributes redirectAttributes) {
-        // Perform any necessary validation or processing here
-        // For example, you might want to save the user in the database
-
         // Redirect to the login page upon successful signup
         redirectAttributes.addFlashAttribute("validEmail", true);
         return "redirect:/login";
     }
 
-    @GetMapping("login") //todo site.mk/login
+    @GetMapping("login")
     public String getLogInPage()
     {
         return("LogIn");
     }
-
-
 
     @GetMapping("profile")
     public String getProfilePage()
