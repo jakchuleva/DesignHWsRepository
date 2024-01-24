@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<style>
+    body {
+        font-family: Arial;
+        background-color: #c9d2c3;
+        margin: 0; /* Reset margin to ensure full width/height of the body */
+    }
+
+    #flex {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+    }
+
+    #flex > div {
+        padding: 40px;
+    }
+
+    #profile {
+        position: fixed;
+        top: 20px; /* Adjust the top value as needed */
+        right: 20px; /* Adjust the right value as needed */
+        display: flex;
+        align-items: center;
+    }
+
+    #profile button {
+        margin-left: 10px;
+        background-color: #eeb05a;
+        color: #fff;
+        font-size: 14px;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    #img {
+        margin: auto;
+        width: 60%;
+    }
+
+    #head > h1, h2 {
+        margin: 0;
+    }
+
+    #text {
+        margin: auto;
+    }
+
+    #head {
+        margin: auto;
+        width: 40%;
+    }
+    #head {
+        margin: auto;
+        width: 40%;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    #head img {
+        width: 25%;
+        height: auto;
+        border-radius: 50%;
+        display: block;
+    }
+    #head-flex {
+        justify-self: center;
+        width: 50%;
+    }
+
+    h1 {
+        margin: auto;
+        font-size: 3rem;
+        padding-bottom: 3rem;
+        font-weight: bold;
+    }
+
+    h2 {
+        font-weight: normal;
+        font-size: 150%;
+    }
+
+    #butt {
+        margin: auto;
+        display: flex;
+        text-align: center;
+    }
+
+    #ema {
+        font-weight: bold;
+        padding-top: 5%;
+        margin: auto;
+    }
+
+    input[type=text] {
+        padding: 6px;
+        margin-top: 8px;
+        font-size: 17px;
+        border: 1px solid #ccc;
+    }
+
+    .search-container button {
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+
+    .search-container button:hover {
+        background: #ccc;
+    }
+
+    .search-result {
+        margin-top: 10px;
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
+    }
+
+    @media screen and (max-width: 600px) {
+        .search-container {
+            float: none;
+        }
+        input[type=text], .search-container button {
+            float: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+        }
+        input[type=text] {
+            border: 1px solid #ccc;
+        }
+    }
+
+    a{
+        color: #fff;
+    }
+    
+</style>
+<body>
+
+<div id="flex">
+    <div id="profile">
+        <button type="submit"><a th:href="@{'/profile'}" style="text-decoration: none">Profile</a></button>
+        <button type="submit"><a th:href="@{'/login'}" style="text-decoration: none">Log out</a></button>
+        <button type="submit"><a th:href="@{'/help'}" style="text-decoration: none">Help</a></button>
+    </div>
+    <div id="head-flex">
+        <div id="text">
+            <h1>Find my landmark</h1>
+        </div>
+        <div id="ema">
+            <p>Search for cultural or historical heritage</p>
+        </div>
+        <div class="search-container">
+            <form action="">
+                <input type="text" id="searchInput" placeholder="Search.." name="search" oninput="searchCSV()">
+                <div id="csvDataDisplay"></div>
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <div id="img">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3079214.9544014954!2d19.59536006281929!3d41.089844753246446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1354159f70bc4809%3A0xe0f25ad6c81fc5b1!2sNorth%20Macedonia!5e0!3m2!1sen!2smk!4v1701612109846!5m2!1sen!2smk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+<script>
+    var csvFilePath = 'filtered_data.csv'; // Hardcoded CSV file path
+    var csvData; // Variable to store CSV data globally
+
+    function handleFile() {
+        var displayElement = document.getElementById('csvDataDisplay');
+
+        // Make an AJAX request to fetch the CSV file
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                csvData = xhr.responseText;
+                displayCSVData(csvData);
+            }
+        };
+        xhr.open('GET', csvFilePath, true);
+        xhr.send();
+    }
+
+    function searchCSV() {
+        var searchWord = document.getElementById('searchInput').value.toLowerCase();
+        var displayElement = document.getElementById('csvDataDisplay');
+
+        if (csvData) {
+            var lines = csvData.split('\n');
+            var matchingLines = lines.filter(function(line) {
+                return line.toLowerCase().includes(searchWord);
+            });
+
+            // Process matching lines to display text after the second comma
+            var formattedLines = matchingLines.map(function(line) {
+                var commaIndex = line.indexOf(',', line.indexOf(',') + 1);
+                if (commaIndex !== -1) {
+                    var textAfterSecondComma = line.substring(commaIndex + 1);
+                    return '<div class="search-result" onclick="searchOnGoogleMaps(\'' + textAfterSecondComma + '\')">' + textAfterSecondComma + '</div>';
+                }
+                return line;
+            });
+
+            displayElement.innerHTML = formattedLines.join('\n');
+        } else {
+            displayElement.innerHTML = 'CSV data not loaded. Please check the file path.';
+        }
+    }
+
+    function searchOnGoogleMaps(query) {
+        // Modify this function to perform a Google Maps search with the provided query
+        // For example, open a new tab with the Google Maps URL
+        window.open('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query), '_blank');
+    }
+
+    // Call handleFile function to fetch CSV data initially
+    handleFile();
+</script>
+</body>
+</html>
